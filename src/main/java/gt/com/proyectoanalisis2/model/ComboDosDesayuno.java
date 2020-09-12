@@ -9,10 +9,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ComboUnoDesayuno implements InterfazOrderControl {
+public class ComboDosDesayuno implements InterfazOrderControl{
     @Override
+    public Campos_pedido createOrder(HttpServletRequest request) {
+        int numberOrder =(int) (5 + Math.random()*20);
+        Campos_pedido order = new Campos_pedido();
 
-        //HEAD_ORDER
+        
         System.out.println(Controlador.name);
         order.setOrder(Integer.toString(numberOrder));
         order.setCashier(Controlador.name);
@@ -26,34 +29,26 @@ public class ComboUnoDesayuno implements InterfazOrderControl {
         List<String> nuevoMenu = new ArrayList<>();
         List<String>alternativa = new ArrayList<>();
 
-        alternativa.add(request.getParameter("alt_medallones"));
-        alternativa.add(request.getParameter("alt_frijoles"));
-        alternativa.add(request.getParameter("alt_queso"));
-     
-         alternativa.add(request.getParameter("alt_tortillas"));
-        alternativa.add(request.getParameter("alt_bebida"));
+///se agrago alternativa 
+  alternativa.add(request.getParameter("alt_cereal"));
+  alternativa.add(request.getParameter("alt_fruta"));
+  alternativa.add(request.getParameter("alt_bebida"));
 
-        for(int i=0;i<menu.menus(request.getParameter("combo")).size();i++){
+      
+        
+          for(int i=0;i<menu.menus(request.getParameter("combo")).size();i++){
             nuevoMenu.add(menu.menus(request.getParameter("combo")).get(i)+" ["+alternativa.get(i)+"]");
         }
+        
         order.setMenu(nuevoMenu);
 
         Map<String,String> extras = new HashMap<>();
-        extras.put("Medallones",request.getParameter("extra_medallones"));
-        extras.put("Frijoles",request.getParameter("extra_frijoles"));
-        extras.put("Queso",request.getParameter("extra_queso"));
-        extras.put("Pan",request.getParameter("extra_pan"));
-        extras.put("Tortillas",request.getParameter("extra_tortillas"));
         extras.put("Fruta",request.getParameter("extra_fruta"));
         extras.put("Jugo de naranja",request.getParameter("extra_jugon"));
 
         List<String>listaFood = new ArrayList<>();
 
-        listaFood.add("Medallones");
-        listaFood.add("Frijoles");
-        listaFood.add("Queso");
-        listaFood.add("Pan");
-        listaFood.add("Tortillas");
+
         listaFood.add("Fruta");
         listaFood.add("Jugo de naranja");
 
