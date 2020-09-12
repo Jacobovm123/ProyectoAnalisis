@@ -9,8 +9,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ComboUnoDesayuno implements InterfazOrderControl {
+public class ComboTresAlmuerzo implements InterfazOrderControl{
     @Override
+    public Campos_pedido createOrder(HttpServletRequest request) {
+        int numberOrder =(int) (5 + Math.random()*20);
+        Campos_pedido order = new Campos_pedido();
 
         //HEAD_ORDER
         System.out.println(Controlador.name);
@@ -21,41 +24,43 @@ public class ComboUnoDesayuno implements InterfazOrderControl {
         order.setCustomer(request.getParameter("text_customer"));
         order.setTaxId(request.getParameter("text_taxId"));
 
-        
+        //BODY_ORDER
         InterfazMenuDao menu = new MenuDao();
         List<String> nuevoMenu = new ArrayList<>();
         List<String>alternativa = new ArrayList<>();
 
-        alternativa.add(request.getParameter("alt_medallones"));
-        alternativa.add(request.getParameter("alt_frijoles"));
-        alternativa.add(request.getParameter("alt_queso"));
-     
-         alternativa.add(request.getParameter("alt_tortillas"));
+        alternativa.add(request.getParameter("alt_lomito"));
+        alternativa.add(request.getParameter("alt_chorizo"));
+        alternativa.add(request.getParameter("alt_platanos"));
+              alternativa.add(request.getParameter("alt_frijoles"));
         alternativa.add(request.getParameter("alt_bebida"));
 
-        for(int i=0;i<menu.menus(request.getParameter("combo")).size();i++){
-            nuevoMenu.add(menu.menus(request.getParameter("combo")).get(i)+" ["+alternativa.get(i)+"]");
-        }
+
+        nuevoMenu.add(menu.menus(request.getParameter("combo")).get(0)+" ["+alternativa.get(0)+"]");
+        nuevoMenu.add(menu.menus(request.getParameter("combo")).get(1)+" ["+alternativa.get(1)+"]");
+        nuevoMenu.add(menu.menus(request.getParameter("combo")).get(2)+" ["+alternativa.get(2)+"]");
+        nuevoMenu.add(menu.menus(request.getParameter("combo")).get(3)+" ["+alternativa.get(3)+"]");
+        nuevoMenu.add(menu.menus(request.getParameter("combo")).get(4)+" ["+alternativa.get(4)+"]");
+
         order.setMenu(nuevoMenu);
 
         Map<String,String> extras = new HashMap<>();
-        extras.put("Medallones",request.getParameter("extra_medallones"));
-        extras.put("Frijoles",request.getParameter("extra_frijoles"));
-        extras.put("Queso",request.getParameter("extra_queso"));
-        extras.put("Pan",request.getParameter("extra_pan"));
-        extras.put("Tortillas",request.getParameter("extra_tortillas"));
-        extras.put("Fruta",request.getParameter("extra_fruta"));
-        extras.put("Jugo de naranja",request.getParameter("extra_jugon"));
+        extras.put("Torta de carne",request.getParameter("extra_carne"));
+        extras.put("Queso amarillo",request.getParameter("extra_quesoA"));
+        extras.put("Helado",request.getParameter("extra_helado"));
+        extras.put("Pastel",request.getParameter("extra_pastel"));
+        extras.put("Flan",request.getParameter("extra_flan"));
+        extras.put("Gelatina",request.getParameter("extra_gelatina"));
 
         List<String>listaFood = new ArrayList<>();
 
-        listaFood.add("Medallones");
-        listaFood.add("Frijoles");
-        listaFood.add("Queso");
-        listaFood.add("Pan");
-        listaFood.add("Tortillas");
-        listaFood.add("Fruta");
-        listaFood.add("Jugo de naranja");
+
+        listaFood.add("Torta de carne");
+        listaFood.add("Queso amarillo");
+        listaFood.add("Helado");
+        listaFood.add("Pastel");
+        listaFood.add("Flan");
+        listaFood.add("Gelatina");
 
         List<String> listExtras = new ArrayList<>();
 
@@ -82,6 +87,4 @@ public class ComboUnoDesayuno implements InterfazOrderControl {
 
         return order;
     }
-
-
 }
