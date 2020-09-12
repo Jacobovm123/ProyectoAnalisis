@@ -23,7 +23,7 @@ import java.io.IOException;
 @Controller
 public class Controlador {
     public static String name;
-    public static OrderEntity order;
+    public static Campos_pedido order;
     public static InterfazMenuDao menu = new MenuDao();
     private static File fileCreate;
 
@@ -106,7 +106,18 @@ public class Controlador {
 
     private String getString(Model model) {
         model.addAttribute("combo1",menu.menus("Combo 1"));
-     
+     //agrego para nuevos cambios 
+        model.addAttribute("combo2",menu.menus("Desayuno 2"));
+        model.addAttribute("combo3",menu.menus("Desayuno 3"));
+
+        model.addAttribute("combo4",menu.menus("Almuerzo 1"));
+        model.addAttribute("combo5",menu.menus("Almuerzo 2"));
+        model.addAttribute("combo6",menu.menus("Almuerzo 3"));
+        model.addAttribute("combo7",menu.menus("Cena 1"));
+        model.addAttribute("combo8",menu.menus("Cena 2"));
+        model.addAttribute("combo9",menu.menus("Cena 3"));
+                
+     //
         model.addAttribute("nameCashier",name);
         return "menus";
     }
