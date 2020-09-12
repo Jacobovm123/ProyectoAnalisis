@@ -4,8 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 
 public class NullObject implements InterfazOrderControl{
     @Override
-    public OrderEntity createOrder(HttpServletRequest request) {
-        OrderEntity order = new OrderEntity();
+    public Campos_pedido createOrder(HttpServletRequest request) {
+        Campos_pedido order = new Campos_pedido();
         order.setCashier("El menu no se encuentra");
         order.setOrder("Upps parece que algo salio mal");
         order.setCustomer("Verifique su orden ");
