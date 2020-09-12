@@ -11,9 +11,6 @@ import java.util.Map;
 
 public class ComboUnoDesayuno implements InterfazOrderControl {
     @Override
-    public Campos_pedido createOrder(HttpServletRequest request) {
-        int numberOrder =(int) (5 + Math.random()*20);
-        Campos_pedido order = new Campos_pedido();
 
         //HEAD_ORDER
         System.out.println(Controlador.name);

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+
+    <title>Menus de Delis Food</title>
+    
+    <style>
+
+
+
+  .navbar{
+    z-index: 999;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    
+  }
+
+  .navbar, ul > li > a{
+      color: black;
+      font-weight: bold;
+  }
+
+#home{
+    
+    padding: 50px 0 30px 0;
+
+    
+}
+
+#services{
+    
+    padding: 50px 0 30px 0;
+
+}
+
+#about{
+    padding: 50px 0 30px 0;
+    background: rgba(73,155,234,1);
+
+}
+
+
+    </style>
+</head>
+
+<body>
+    
+    
+      <div class="container text-center mt-5">
+             <div class="row">
+                <div class="col-12">
+                    <h1>Bienvenido a Delis Food  </h1>
+                </div>
+             </div>
+         </div>
+          <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+          <div class="col-sm-1">
+              <a class="navbar-brand" href="#">
+                 Delis Food
+             </a>
+          </div>
+            
+          
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item ">
+                           
+             <div class="container text-center">
+                <div class="text-center">
+                     <div class="nav price-tabs" role="tablist">
+                             <a class="nav-link active" href="#desayuno" role="tab" data-toggle="tab">Desayunos</a>
+                             
+                     </div>
+             </div>
+            </li>
+            
+          </ul>
+        </div>
+
+        </div>
+      </nav>
+
+
+
+     
+<main class="mt-5 pt-5">
+    
+<div class="container mt-5">
+    <div class="tab-content wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+          
+
+        <div role="tabpanel" class="tab-pane fade show active" id="desayuno">
+        <div class="contariner text-center">
+           <h1> <strong>Desayunos</strong> </h1>
+        </div>
+            <br><br>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4 mb-30">
+                    <div class="price-item text-center">
+                        <div class="price-top">
+                            <h3>combo numero 1</h3>
+                            <h4 class="mb-0"><sup>Q</sup>35.00</h4>
+                        </div>
+                        <div class="price-content">
+                            <ul class="border-bottom mb-30 mt-md-4 pb-3 text-left">
+                                <li th:each="lista : ${combo1}" >
+                                    <i class="zmdi zmdi-check mr-2"></i>
+                                    <span class="c-black" th:text="${lista}"></span>
+                                </li>
+                            </ul>
+                            <form method="post" th:action="@{/factura}"  name="menu1">
+                                <h3>Alternativas</h3>
+                                <input name="combo" type="hidden" value="Combo 1">
+                                <strong>Medallones</strong><br>
+                                <select class="form-control" id="alt_huevos" name="alt_medallones" >
+                                    <option value="Pollo">Medallones de pollo</option>
+                                   <option value="Carne">Medallones de carne con salsa de vino tinto</option>
+                                </select>
+                                
+                                <strong>Frijoles</strong><br>
+                                <select class="form-control" id="alt_frijoles" name="alt_frijoles">
+                                    <option>Parados</option>
+                                    <option>Colados</option>
+                                </select>
+                                
+                               <strong>queso</strong><br>
+                                <select class="form-control" id="alt_pan" name="alt_queso">
+                                    <option>Fresco</option>
+                                    <option>Cheddar</option>
+                                </select>
+                                
+                                
+                                <strong>tortillas</strong><br>
+                                <select class="form-control" id="alt_pan" name="alt_tortillas">
+                                    <option>suaves </option>
+                                    <option>tostaditas</option>
+                                </select>
+                                
+                                <strong>Bebida</strong><br>
+                                <select class="form-control" id="alt_bebida" name="alt_bebida">
+                                    <option>Cafe</option>
+                                    <option>atol</option>
+                                    <option>Jugo natural</option>
+                                </select>
+                                
+                                <h3>Extras</h3>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span><strong> medallones Q.5.00 </strong></span>
+                                    </div>
+                                    <select class="form-control" id="extra_medallones" name="extra_medallones">
+                                        <option th:each="i : ${#numbers.sequence(0, 5)}" th:value="${i}" th:text="${i}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span><strong> Frijoles  Q.0.00 </strong></span>
+                                    </div>
+                                    <select class="form-control" id="extra_frijoles" name="extra_frijoles">
+                                        <option th:each="i : ${#numbers.sequence(0, 5)}" th:value="${i}" th:text="${i}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                       <span><strong> Queso Q.3.00 </strong></span>
+                                    </div>
+                                    <select class="form-control" id="extra_queso" name="extra_queso">
+                                        <option th:each="i : ${#numbers.sequence(0, 5)}" th:value="${i}" th:text="${i}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                       <span><strong> pan Q.1.00 </strong></span>
+                                    </div>
+                                    <select class="form-control" id="extra_pan" name="extra_pan">
+                                        <option th:each="i : ${#numbers.sequence(0, 5)}" th:value="${i}" th:text="${i}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                      <span><strong> tortillas Q.1.00 </strong></span>
+                                    </div>
+                                    <select class="form-control" id="extra_tortillas" name="extra_tortillas">
+                                        <option th:each="i : ${#numbers.sequence(0, 5)}" th:value="${i}" th:text="${i}">
+                                        </option>
+                                    </select>
+                                </div>
+                      
+                             
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span><strong> fruta Q.7.00 </strong></span>
+                                    </div>
+                                    <select class="form-control" id="extra_fruta" name="extra_fruta">
+                                        <option th:each="i : ${#numbers.sequence(0, 5)}" th:value="${i}" th:text="${i}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span><strong> Jugo Q.10.00 </strong></span>
+                                    </div>
+                                    <select class="form-control" id="extra_jugonatural" name="extra_jugon">
+                                        <option th:each="i : ${#numbers.sequence(0, 5)}" th:value="${i}" th:text="${i}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span><strong>Cliente </strong></span>
+                                        </div>
+                                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Nombre" name="text_customer" required>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <span><strong>Nit</strong></span>
+                                        </div>
+                                        <input type="number" class="form-control"  placeholder="ingrese nit" name="text_taxId" required>
+                                    </div>
+                                </div>
+                                <input type="submit" class="btn btn-success" value="Realizar orden">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+             
+             
+            </div>
+        </div>
+
+        
+        
+        
+  
+        </div>
+    </div>
+
+
+  
+</main>
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
