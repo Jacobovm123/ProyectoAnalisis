@@ -5,5 +5,5 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public interface InterfazControlArchivo {
-    public void createFile(OrderEntity order) throws IOException;
+    public void createFile(Campos_pedido order) throws IOException;
 }
